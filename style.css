@@ -1,0 +1,33 @@
+body {
+    font-family: Georgia, serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    padding: 60px 20px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+p {
+    font-size: 20px;
+}
+
+button {
+    padding: 15px 30px;
+    margin: 10px;
+    font-size: 17px;
+    cursor: pointer;
+    border: none;
+    border-radius: 30px;
+    background-color: #8b6f47;
+    color: white;
+}
