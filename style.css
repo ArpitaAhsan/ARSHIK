@@ -37,10 +37,6 @@ button {
   cursor: pointer;
 }
 
-/* ===============================
-   GENERAL SITE SIZE (Phone-friendly)
-   =============================== */
-
 .scroll-site {
   max-width: 500px;
   margin: 0 auto;
@@ -73,10 +69,6 @@ button {
   display: block;
 }
 
-/* =========================================================
-   NIKKAH NAME OVERLAY - FIXED & CLEAN
-   ========================================================= */
-
 .image-wrap {
   position: relative;
   width: 100%;
@@ -91,14 +83,9 @@ button {
   display: block;
 }
 
-/* Move nikah background image to the LEFT */
 .nikah-page .image-wrap > img {
   object-position: 40% center;
 }
-
-/* =========================================================
-   NIKKAH NAME BOX - COMPLETELY REMOVED, JUST TEXT
-   ========================================================= */
 
 .nikah-name-cover {
   position: absolute;
@@ -124,10 +111,6 @@ button {
   overflow: visible !important;
 }
 
-/* =========================================================
-   "THE NIKKAH OF"
-   ========================================================= */
-
 .the-nikkah {
   font-size: clamp(14px, 3.2vw, 20px);
   margin: 0 0 0.3rem 0;
@@ -137,10 +120,6 @@ button {
   font-weight: 500;
   line-height: 1.05;
 }
-
-/* =========================================================
-   GROOM + BRIDE NAMES
-   ========================================================= */
 
 .script-name {
   font-family: "Great Vibes", "Brush Script MT", cursive;
@@ -155,10 +134,6 @@ button {
   color: #4a3a2a;
 }
 
-/* =========================================================
-   AMPERSAND
-   ========================================================= */
-
 .amp {
   font-size: clamp(18px, 3.5vw, 28px);
   line-height: 1;
@@ -167,17 +142,9 @@ button {
   font-weight: 300;
 }
 
-/* =========================================================
-   BRIDE NAME
-   ========================================================= */
-
 .script-name.bride {
   margin-top: 0.02rem;
 }
-
-/* =========================================================
-   PHONE
-   ========================================================= */
 
 @media (max-width: 480px) {
   .nikah-name-cover {
@@ -194,19 +161,13 @@ button {
     height: auto !important;
     overflow: visible !important;
   }
-
   .script-name {
     font-size: clamp(18px, 4.5vw, 28px);
   }
-
   .the-nikkah {
     font-size: clamp(12px, 2.8vw, 16px);
   }
 }
-
-/* =========================================================
-   VERY SMALL PHONES
-   ========================================================= */
 
 @media (max-width: 380px) {
   .nikah-name-cover {
@@ -223,15 +184,10 @@ button {
     height: auto !important;
     overflow: visible !important;
   }
-
   .script-name {
     font-size: clamp(15px, 4vw, 22px);
   }
 }
-
-/* =========================================================
-   TABLET / DESKTOP
-   ========================================================= */
 
 @media (min-width: 768px) {
   .nikah-name-cover {
@@ -248,70 +204,24 @@ button {
     height: auto !important;
     overflow: visible !important;
   }
-
   .script-name {
     font-size: clamp(32px, 5vw, 48px);
   }
 }
 
-/* Save date - SINGLE PULSATING HEART */
-.save-wrap {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.save-wrap > img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.date-heart {
-  position: absolute;
-  left: 76.5%;
-  top: 56.1%;
-  transform: translate(-50%, -50%);
-  font-family: Georgia, serif;
-  font-size: clamp(80px, 20vw, 120px);
-  line-height: 1;
-  color: #73754d;
-  animation: heartOscillate 1.25s ease-in-out infinite;
-  text-shadow: 0 0 10px rgba(112, 113, 75, .18);
-  z-index: 3;
-  pointer-events: none;
-}
-
-@keyframes heartOscillate {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1) rotate(-2deg);
-  }
-  25% {
-    transform: translate(-50%, -50%) scale(1.06) rotate(1deg);
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(.97) rotate(-1deg);
-  }
-  75% {
-    transform: translate(-50%, -50%) scale(1.04) rotate(2deg);
-  }
-}
-
-/* Venue */
 .map-button {
   position: absolute;
   left: 50%;
-  bottom: 5.5%;
+  bottom: 57.5%;
   transform: translateX(-50%);
   text-decoration: none;
   background: rgba(92, 100, 60, .96);
   color: #fffaf1;
   border: 1px solid rgba(255, 255, 255, .55);
   border-radius: 999px;
-  padding: .7rem 1.15rem;
+  padding: 1rem 2rem;
   box-shadow: 0 8px 25px rgba(70, 60, 40, .22);
-  font-size: .85rem;
+  font-size: 1.1rem;
   letter-spacing: .03em;
   transition: transform .2s ease, background .2s ease;
   z-index: 5;
@@ -321,7 +231,6 @@ button {
   transform: translateX(-50%) scale(.97);
 }
 
-/* RSVP */
 .rsvp-page {
   background: #f5efe4;
   display: grid;
@@ -337,18 +246,9 @@ button {
   display: grid;
   place-items: center;
   padding: 8% 8%;
-  background:
-    radial-gradient(
-      circle at top,
-      rgba(255, 255, 255, .85),
-      transparent 40%
-    ),
-    linear-gradient(180deg, #fbf7ef, #f1e8da);
+  background: radial-gradient(circle at top, rgba(255, 255, 255, .85), transparent 40%), linear-gradient(180deg, #fbf7ef, #f1e8da);
   border: 1px solid rgba(120, 110, 80, .2);
-  box-shadow:
-    inset 0 0 0 10px rgba(255, 255, 255, .25),
-    inset 0 0 60px rgba(113, 99, 68, .12),
-    0 18px 45px rgba(70, 50, 30, .1);
+  box-shadow: inset 0 0 0 10px rgba(255, 255, 255, .25), inset 0 0 60px rgba(113, 99, 68, .12), 0 18px 45px rgba(70, 50, 30, .1);
   overflow: hidden;
 }
 
@@ -360,23 +260,7 @@ button {
   bottom: -3%;
   width: 28%;
   opacity: .85;
-  background:
-    radial-gradient(
-      circle at 30% 8%,
-      #fff 0 5%,
-      transparent 6%
-    ),
-    radial-gradient(
-      circle at 70% 18%,
-      #e9e4d8 0 8%,
-      transparent 9%
-    ),
-    repeating-linear-gradient(
-      25deg,
-      transparent 0 16px,
-      rgba(108, 119, 75, .18) 17px 19px,
-      transparent 20px 38px
-    );
+  background: radial-gradient(circle at 30% 8%, #fff 0 5%, transparent 6%), radial-gradient(circle at 70% 18%, #e9e4d8 0 8%, transparent 9%), repeating-linear-gradient(25deg, transparent 0 16px, rgba(108, 119, 75, .18) 17px 19px, transparent 20px 38px);
   filter: blur(.2px);
 }
 
@@ -453,16 +337,12 @@ button {
   box-shadow: 0 12px 30px rgba(116, 123, 82, 0.3);
 }
 
-/* ===============================
-   RUNAWAY DECLINE BUTTON - SIMPLE & FAST
-   =============================== */
-
 .decline {
   background: rgba(255, 255, 255, 0.75);
   color: #62594e;
   backdrop-filter: blur(5px);
   position: relative;
-  transition: left .18s ease, top .18s ease;  /* ← FAST & SMOOTH */
+  transition: left .18s ease, top .18s ease;
   will-change: left, top;
   cursor: default;
   border: 2px solid rgba(180, 160, 140, 0.25) !important;
@@ -480,7 +360,6 @@ button {
   font-style: italic;
 }
 
-/* Only keep the essential dodge - remove all extra animations */
 .decline.idle,
 .decline.attracted,
 .decline.dodging {
@@ -518,7 +397,6 @@ button {
   }
 }
 
-/* Final */
 .final-wrap {
   background: #f4ecdf;
 }
@@ -545,7 +423,6 @@ button {
   filter: sepia(.12) saturate(.75) contrast(.92);
 }
 
-/* Music */
 .music-control {
   position: fixed;
   right: 14px;
@@ -564,9 +441,7 @@ button {
   font-size: 1.25rem;
   opacity: 0;
   pointer-events: none;
-  transition:
-    opacity .4s ease,
-    transform .2s ease;
+  transition: opacity .4s ease, transform .2s ease;
 }
 
 .music-control.visible {
@@ -578,37 +453,185 @@ button {
   transform: scale(.94);
 }
 
-/* =========================================================
-   FINAL FIX - REMOVE NIKKAH WHITE BOX
-   ========================================================= */
-
 .nikah-page .nikah-name-cover {
-    background: transparent !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    border: none !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    width: auto !important;
-    height: auto !important;
-    padding: 0 !important;
-    overflow: visible !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+  overflow: visible !important;
 }
 
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+/* ===============================
+   SCROLL DOWN BUTTON
+   =============================== */
+
+.scroll-down {
+  position: absolute;
+  bottom: 5.5%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.scroll-down button {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(120, 110, 80, 0.3);
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  color: #5a5148;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.scroll-down button:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: scale(1.05);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+}
+
+.scroll-down button:active {
+  transform: scale(0.95);
+}
+
+/* Hide scroll button on last page */
+.final-page ~ .scroll-down,
+.page:last-of-type + .scroll-down {
+  display: none;
+}
+
+/* ===============================
+   RSVP OVERLAY ON SAVE DATE PAGE
+   =============================== */
+
+.rsvp-overlay {
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 400px;
+  z-index: 5;
+  text-align: center;
+  padding: 0;
+}
+
+.rsvp-overlay .small-arabic {
+  color: var(--olive);
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.rsvp-overlay .eyebrow {
+  color: #6c665c;
+  font-size: 0.9rem;
+  margin: 0 0 0.5rem;
+}
+
+.rsvp-overlay h2 {
+  margin: 0 0 0.5rem 0;
+  color: #625943;
+  font-size: clamp(24px, 5vw, 34px);
+  font-weight: 600;
+}
+
+.rsvp-overlay .rsvp-buttons {
+  display: grid;
+  gap: 0.7rem;
+  justify-items: center;
+  min-height: 100px;
+  padding: 5px 0;
+}
+
+.rsvp-overlay .rsvp-buttons button {
+  border-radius: 999px;
+  padding: .7rem 1.1rem;
+  width: min(92%, 280px);
+  border: 1px solid rgba(94, 91, 62, .35);
+  box-shadow: 0 8px 22px rgba(80, 65, 40, .1);
+  transition: all 0.3s cubic-bezier(.34, 1.56, .64, 1);
+}
+
+.rsvp-overlay .accept {
+  background: #747b52;
+  color: #fffaf0;
+}
+
+.rsvp-overlay .accept:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 30px rgba(116, 123, 82, 0.3);
+}
+
+.rsvp-overlay .decline {
+  background: rgba(255, 255, 255, 0.75);
+  color: #62594e;
+  backdrop-filter: blur(5px);
+  position: relative;
+  transition: left .18s ease, top .18s ease;
+  will-change: left, top;
+  cursor: default;
+  border: 2px solid rgba(180, 160, 140, 0.25) !important;
+  box-shadow: 0 8px 22px rgba(80, 65, 40, 0.08) !important;
+  z-index: 10;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.rsvp-overlay .decline small {
+  display: block;
+  font-size: .6rem;
+  opacity: .6;
+  margin-top: .08rem;
+  font-style: italic;
+}
+
+.rsvp-overlay .decline.idle,
+.rsvp-overlay .decline.attracted,
+.rsvp-overlay .decline.dodging {
+  animation: none !important;
+}
+
+.rsvp-overlay .rsvp-success {
+  animation: rise .7s ease both;
+}
+
+.rsvp-overlay .rsvp-success h3 {
+  color: #667048;
+  font-size: 1.4rem;
+  margin: .5rem 0 .25rem;
+}
+
+.rsvp-overlay .rsvp-success p {
+  margin: 0;
+  color: #6b6257;
+}
+
+.rsvp-overlay .success-mark {
+  color: #9a8656;
+  font-size: 1.6rem;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
   }
-  .date-heart {
-    animation: none;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  .decline.idle,
-  .decline.attracted,
-  .decline.dodging {
-    animation: none !important;
-  }
-  * {
-    transition-duration: .01ms !important;
-  }
+}
+
+/* Hide the scroll down button on save page since it has overlay */
+.save-page .scroll-down {
+  display: none;
 }

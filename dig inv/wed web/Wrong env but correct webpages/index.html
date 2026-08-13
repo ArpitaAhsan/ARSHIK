@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5efe4">
+  <title>Fairuz & Ashiqur — Nikkah Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="invitation" aria-label="Wedding invitation">
+    <section class="envelope-screen" id="envelopeScreen" aria-label="Open invitation">
+      <div class="envelope-stage" id="envelopeStage">
+        <div class="card-reveal">
+          <img src="assets/opening.png" alt="Wedding invitation opening card">
+        </div>
+        <div class="envelope-half left" aria-hidden="true"></div>
+        <div class="envelope-half right" aria-hidden="true"></div>
+        <button class="open-hint" id="openEnvelope" aria-label="Open the wedding invitation">
+          <span>Tap to open</span>
+          <span class="seal-dot">✦</span>
+        </button>
+      </div>
+    </section>
+
+    <div class="scroll-site" id="scrollSite">
+      <section class="page image-page opening-page" id="opening">
+        <img src="assets/opening.png" alt="Bismillah, Quran 78:8, and invitation message">
+      </section>
+
+      <section class="page image-page nikah-page" id="nikah">
+        <div class="image-wrap">
+          <img src="assets/nikah.png" alt="Nikkah introduction">
+          <div class="nikah-name-cover" aria-label="Names of the couple">
+            <div class="the-nikkah">The Nikkah of</div>
+            <div class="script-name">Golam Mohammad Ashiqur Rahman</div>
+            <div class="amp">&amp;</div>
+            <div class="script-name bride">Fairuz Tarannum</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page image-page family-page" id="family">
+        <img src="assets/family.png" alt="Family invitation with the couple's names and sketch">
+      </section>
+
+      <section class="page image-page save-page" id="saveDate">
+        <div class="save-wrap">
+          <img src="assets/save-date.png" alt="Save the Date — January 9, 2027">
+          <div class="date-heart" aria-hidden="true">♡</div>
+        </div>
+      </section>
+
+      <section class="page image-page venue-page" id="venue">
+        <div class="venue-wrap">
+          <img src="assets/venue.png" alt="Phoenix Convention Center wedding venue">
+          <a class="map-button" href="https://maps.app.goo.gl/mocdovi1Q9xpoS1v6" target="_blank" rel="noopener">⌖&nbsp; Get Directions</a>
+        </div>
+      </section>
+
+      <section class="page rsvp-page" id="rsvp">
+        <div class="floral-frame">
+          <div class="rsvp-content">
+            <div class="small-arabic">بِسْمِ اللَّهِ</div>
+            <p class="eyebrow">Your presence would make our day even more special</p>
+            <h2>Will you join us?</h2>
+            <p class="rsvp-sub">We would be delighted to celebrate this beautiful beginning with you.</p>
+            <div class="rsvp-buttons" id="rsvpButtons">
+              <button class="accept" id="acceptBtn">Delighted to Accept <span>🤍</span></button>
+              <button class="decline" id="declineBtn">Regretfully Unable to Attend <small>(Can not press)</small></button>
+            </div>
+            <div class="rsvp-success" id="rsvpSuccess" hidden>
+              <div class="success-mark">✦</div>
+              <h3>Yay! You chose correctly. 😂🤍</h3>
+              <p>We can't wait to celebrate with you!</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page image-page final-page" id="final">
+        <div class="final-wrap">
+          <img src="assets/final.png" alt="Final wedding dua and blessing">
+          <div class="photo-overlay" aria-hidden="true">
+            <img src="assets/couple-hands.png" alt="">
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <button class="music-control" id="musicControl" aria-label="Mute music" title="Mute / unmute music">
+      <span id="musicIcon">♪</span>
+    </button>
+    <audio id="music" preload="auto" loop src="assets/music.mp3"></audio>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
