@@ -121,22 +121,26 @@
       font-family: "Cormorant Garamond", Georgia, serif;
     }
     #browserRedirect > div {
-      max-width: 320px;
+      width: min(90%, 340px);
     }
     #browserRedirect h2 {
       color: #697047;
-      margin-bottom: 10px;
+      font-size: 2rem;
+      margin-bottom: 12px;
     }
     #browserRedirect p {
+      line-height: 1.5;
       margin-bottom: 25px;
     }
     #openExternal {
       display: inline-block;
-      padding: 12px 22px;
+      padding: 13px 28px;
       border-radius: 999px;
       background: #697047;
-      color: white;
+      color: #fffaf0;
       text-decoration: none;
+      font-size: 1rem;
+      box-shadow: 0 8px 20px rgba(70, 60, 40, .15);
     }
     
     .scroll-site {
@@ -511,9 +515,17 @@
 <!-- ===================================================== -->
 <div id="browserRedirect">
   <div>
-    <h2>Opening your invitation 🤍</h2>
-    <p>This invitation looks best in your browser.</p>
-    <a id="openExternal" href="https://arshik.vercel.app" target="_blank" rel="noopener noreferrer">
+    <h2>Open your invitation 🤍</h2>
+    <p>
+      For the best experience, please open the invitation
+      in Safari or your default browser.
+    </p>
+    <a
+      id="openExternal"
+      href="https://arshik.vercel.app/"
+      target="_blank"
+      rel="noopener"
+    >
       Open Invitation
     </a>
   </div>
@@ -624,7 +636,7 @@ if (video.readyState >= 2) {
 }
 
 // ===============================
-// DETECT IN-APP BROWSERS & REDIRECT
+// DETECT IN-APP BROWSERS & SHOW REDIRECT SCREEN
 // ===============================
 
 (function () {
@@ -653,26 +665,24 @@ if (video.readyState >= 2) {
     return;
   }
 
+  // Show the redirect screen with a real link for the user to tap
   const redirectScreen = document.getElementById("browserRedirect");
   if (redirectScreen) {
     redirectScreen.style.display = "grid";
   }
 
-  const url = "https://arshik.vercel.app";
-
-  // Android: try Chrome intent
+  // For Android, we can still try an intent to open Chrome automatically
   if (/Android/i.test(ua)) {
+    const url = "https://arshik.vercel.app";
     const intentUrl =
       "intent://" +
       url.replace(/^https?:\/\//, "") +
       "#Intent;scheme=https;package=com.android.chrome;end";
+    // This will redirect Android users to Chrome automatically
     window.location.href = intentUrl;
-  } else {
-    // iOS / other: try to open externally, fallback to manual button
-    setTimeout(function () {
-      window.open(url, "_blank");
-    }, 300);
   }
+  // For iOS, we do NOT use any automatic redirect.
+  // The user must tap the "Open Invitation" link.
 })();
 
 // ===============================
