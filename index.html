@@ -73,6 +73,7 @@
       background: transparent;
       padding: 0;
       cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
     }
     #hint {
       position: absolute;
@@ -508,6 +509,8 @@
   </div>
 </div>
 <div class="scroll-site" id="scrollSite">
+  
+  <!-- NIKKAH PAGE - SCROLL DOWN BUTTON ONLY HERE -->
   <section class="page image-page nikah-page" id="nikah">
     <div class="image-wrap">
       <img src="assets/nikah.png" alt="Nikkah introduction">
@@ -517,13 +520,12 @@
     </div>
   </section>
   
+  <!-- FAMILY PAGE - NO SCROLL DOWN -->
   <section class="page image-page family-page" id="family">
     <img src="assets/family.png" alt="Family invitation with the couple's names and sketch">
-    <div class="scroll-down">
-      <button onclick="scrollToNextPage(this)">↓ Scroll Down</button>
-    </div>
   </section>
   
+  <!-- SAVE DATE PAGE - NO SCROLL DOWN -->
   <section class="page image-page save-page" id="saveDate">
     <div class="save-wrap">
       <img src="assets/save-date.jpeg" alt="Save the Date — January 9, 2027">
@@ -544,21 +546,17 @@
         </div>
       </div>
     </div>
-    <div class="scroll-down">
-      <button onclick="scrollToNextPage(this)">↓ Scroll Down</button>
-    </div>
   </section>
 
+  <!-- VENUE PAGE - NO SCROLL DOWN -->
   <section class="page image-page venue-page" id="venue">
     <div class="venue-wrap">
       <img src="assets/venue.png" alt="Phoenix Convention Center wedding venue">
       <a class="map-button" href="https://maps.app.goo.gl/mocdovi1Q9xpoS1v6" rel="noopener">⌖&nbsp; Get Directions</a>
     </div>
-    <div class="scroll-down">
-      <button onclick="scrollToNextPage(this)">↓ Scroll Down</button>
-    </div>
   </section>
   
+  <!-- FINAL PAGE - NO SCROLL DOWN -->
   <section class="page image-page final-page" id="final">
     <div class="final-wrap">
       <img src="assets/final.png" alt="Final wedding dua and blessing">
@@ -590,28 +588,29 @@ let musicStarted = false;
 let declineHoverCount = 0;
 let isAnimating = false;
 
-const teaseEl = document.createElement('div');
-teaseEl.className = 'decline-tease';
-teaseEl.textContent = '💕 Come on! Say YES!';
-declineBtn.parentNode.insertBefore(teaseEl, declineBtn.nextSibling);
+// ===============================
+// SMOOTHER VIDEO OPENING - ONE TAP ONLY
+// ===============================
 
-seal.addEventListener('click', async () => {
-  if (started) return;
+// Prevent multiple taps
+let isOpening = false;
+
+function openInvitation() {
+  if (isOpening || started) return;
+  isOpening = true;
   started = true;
+  
   hint.classList.add('hidden');
   seal.style.pointerEvents = 'none';
   
-  try {
-    await video.play();
-  } catch (e) {
-    // Video play failed
-  }
+  // Start video
+  video.play().catch(() => {});
   
+  // Start music with fade
   if (!musicStarted) {
     musicStarted = true;
     audio.volume = 0;
-    try {
-      await audio.play();
+    audio.play().then(() => {
       musicControl.classList.add('visible');
       let volume = 0;
       const fade = setInterval(() => {
@@ -619,9 +618,21 @@ seal.addEventListener('click', async () => {
         audio.volume = Math.min(volume, 0.48);
         if (volume >= 0.48) clearInterval(fade);
       }, 70);
-    } catch (e) {
-      // Audio play failed
-    }
+    }).catch(() => {});
+  }
+}
+
+// Click handler with passive: true for better touch performance
+seal.addEventListener('click', openInvitation);
+seal.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  openInvitation();
+}, { passive: false });
+
+// Also allow clicking on the stage background
+document.querySelector('.stage').addEventListener('click', (e) => {
+  if (e.target === document.querySelector('.stage') || e.target === video) {
+    openInvitation();
   }
 });
 
@@ -642,6 +653,15 @@ musicControl.addEventListener('click', () => {
     musicControl.setAttribute('aria-label', 'Play music');
   }
 });
+
+// ===============================
+// RSVP BUTTON DODGE
+// ===============================
+
+const teaseEl = document.createElement('div');
+teaseEl.className = 'decline-tease';
+teaseEl.textContent = '💕 Come on! Say YES!';
+declineBtn.parentNode.insertBefore(teaseEl, declineBtn.nextSibling);
 
 document.addEventListener('mousemove', (event) => {
   if (rsvpButtons.hidden) return;
@@ -746,6 +766,10 @@ acceptBtn.addEventListener('click', () => {
   rsvpSuccess.hidden = false;
   clearInterval(idleInterval);
 });
+
+// ===============================
+// SCROLL TO NEXT PAGE
+// ===============================
 
 function scrollToNextPage(button) {
   const currentPage = button.closest('.page');
