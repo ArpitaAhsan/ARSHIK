@@ -576,23 +576,32 @@ if (video.readyState >= 2) {
 }
 
 // ===============================
-// IOS MESSENGER - LET IT WORK IN-APP
+// MERGED MESSENGER BEHAVIOR
+// iOS: Let it work in-app
+// Android: Redirect to Chrome
 // ===============================
 
 (function () {
   const ua = navigator.userAgent || navigator.vendor || window.opera;
-
   const isIOS = /iPhone|iPad|iPod/i.test(ua);
+  const isAndroid = /Android/i.test(ua);
   const isMessenger = /FBAN|FBAV|FBIOS|Messenger/i.test(ua);
 
-  // For iOS Messenger, we DO NOT block or redirect.
-  // We just let the invitation work inside Messenger's browser.
-  // The video and all interactions should work as normal.
-  
-  // If it's iOS Messenger, just log it and let everything work.
+  // iOS Messenger: Let it work inside the app
   if (isIOS && isMessenger) {
     console.log('iOS Messenger detected - invitation will work in-app');
-    // No redirect - let the page load normally
+    return;
+  }
+
+  // Android Messenger: Redirect to Chrome browser
+  if (isAndroid && isMessenger) {
+    const url = "https://arshik.vercel.app";
+    const intentUrl =
+      "intent://" +
+      url.replace(/^https?:\/\//, "") +
+      "#Intent;scheme=https;package=com.android.chrome;end";
+    window.location.href = intentUrl;
+    return;
   }
 })();
 
