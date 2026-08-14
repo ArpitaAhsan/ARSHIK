@@ -51,7 +51,6 @@
       aspect-ratio: 9 / 16;
       overflow: hidden;
       background: #f6efe7;
-      cursor: pointer;
     }
     #inviteVideo {
       position: absolute;
@@ -465,8 +464,8 @@
 </head>
 <body>
 <div class="opening" id="opening">
-  <div class="stage" id="stage">
-    <video id="inviteVideo" playsinline preload="auto" muted poster="assets/poster.png">
+  <div class="stage">
+    <video id="inviteVideo" playsinline preload="auto" muted>
       <source src="assets/vidvid.mp4" type="video/mp4">
     </video>
     <button id="sealButton" aria-label="Click the seal to open"></button>
@@ -538,7 +537,6 @@ const opening = document.getElementById('opening');
 const video = document.getElementById('inviteVideo');
 const seal = document.getElementById('sealButton');
 const hint = document.getElementById('hint');
-const stage = document.getElementById('stage');
 const audio = document.getElementById('audio');
 const musicControl = document.getElementById('music');
 const declineBtn = document.getElementById('declineBtn');
@@ -552,25 +550,20 @@ let declineHoverCount = 0;
 let isAnimating = false;
 
 // ===============================
-// MAP LINK - WORKS ON iOS AND ANDROID
+// MAP LINK - CORRECT LOCATION
 // ===============================
 
 document.getElementById('mapLink').addEventListener('click', function(e) {
   e.preventDefault();
   const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-  const lat = 33.4484;
-  const lng = -112.0740;
-  const place = "Phoenix Convention Center";
+  const lat = 23.76034593069255;
+  const lng = 90.39604725767101;
+  const place = "Venue Location";
   
   if (isIOS) {
-    // Try Google Maps app first, fallback to Apple Maps
     const googleMapsApp = `comgooglemaps://?q=${lat},${lng}`;
     const appleMaps = `http://maps.apple.com/?ll=${lat},${lng}&q=${encodeURIComponent(place)}`;
-    
-    // Try to open Google Maps app
     window.location.href = googleMapsApp;
-    
-    // If Google Maps app not installed, fallback to Apple Maps after 2 seconds
     setTimeout(() => {
       window.location.href = appleMaps;
     }, 2000);
@@ -613,27 +606,19 @@ function openInvitation() {
   }
 }
 
-// Click handler for seal
+// Click handler with passive: true for better touch performance
 seal.addEventListener('click', openInvitation);
 seal.addEventListener('touchstart', (e) => {
   e.preventDefault();
   openInvitation();
 }, { passive: false });
 
-// Click handler for stage background
-stage.addEventListener('click', (e) => {
-  if (e.target === stage || e.target === video) {
+// Also allow clicking on the stage background
+document.querySelector('.stage').addEventListener('click', (e) => {
+  if (e.target === document.querySelector('.stage') || e.target === video) {
     openInvitation();
   }
 });
-
-// Fallback for Messenger WebView - click anywhere on stage
-stage.addEventListener('touchstart', (e) => {
-  if (!started) {
-    e.preventDefault();
-    openInvitation();
-  }
-}, { passive: false });
 
 video.addEventListener('ended', () => {
   opening.classList.add('done');
