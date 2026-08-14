@@ -146,68 +146,7 @@ button {
   margin-top: 0.02rem;
 }
 
-@media (max-width: 480px) {
-  .nikah-name-cover {
-    top: 50%;
-    left: 50%;
-    background: transparent !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    border: none !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    width: auto !important;
-    height: auto !important;
-    overflow: visible !important;
-  }
-  .script-name {
-    font-size: clamp(18px, 4.5vw, 28px);
-  }
-  .the-nikkah {
-    font-size: clamp(12px, 2.8vw, 16px);
-  }
-}
-
-@media (max-width: 380px) {
-  .nikah-name-cover {
-    top: 50%;
-    left: 50%;
-    background: transparent !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    border: none !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    width: auto !important;
-    height: auto !important;
-    overflow: visible !important;
-  }
-  .script-name {
-    font-size: clamp(15px, 4vw, 22px);
-  }
-}
-
-@media (min-width: 768px) {
-  .nikah-name-cover {
-    top: 50%;
-    left: 50%;
-    background: transparent !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    border: none !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    width: auto !important;
-    height: auto !important;
-    overflow: visible !important;
-  }
-  .script-name {
-    font-size: clamp(32px, 5vw, 48px);
-  }
-}
+/* REMOVED ALL MEDIA QUERIES - SAME STYLES EVERYWHERE */
 
 .map-button {
   position: absolute;
@@ -527,20 +466,20 @@ button {
 
 .rsvp-overlay .small-arabic {
   color: var(--olive);
-  font-size: 1.8rem;
+  font-size: 2rem;
   margin-bottom: 0.8rem;
 }
 
 .rsvp-overlay .eyebrow {
   color: #6c665c;
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin: 0 0 0.5rem;
 }
 
 .rsvp-overlay h2 {
   margin: 0 0 0.5rem 0;
   color: #625943;
-  font-size: clamp(24px, 5vw, 34px);
+  font-size: clamp(30px, 7vw, 44px);
   font-weight: 600;
 }
 
@@ -554,8 +493,8 @@ button {
 
 .rsvp-overlay .rsvp-buttons button {
   border-radius: 999px;
-  padding: .7rem 1.1rem;
-  width: min(92%, 280px);
+  padding: .85rem 1.1rem;
+  width: min(92%, 330px);
   border: 1px solid rgba(94, 91, 62, .35);
   box-shadow: 0 8px 22px rgba(80, 65, 40, .1);
   transition: all 0.3s cubic-bezier(.34, 1.56, .64, 1);
