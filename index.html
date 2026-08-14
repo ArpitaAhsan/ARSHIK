@@ -104,6 +104,41 @@
       opacity: 0;
       pointer-events: none;
     }
+    
+    /* ===============================
+       IN-APP BROWSER REDIRECT OVERLAY
+       =============================== */
+    #browserRedirect {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #f6efe7;
+      display: none; /* Hidden by default, shown by JS if needed */
+      place-items: center;
+      text-align: center;
+      padding: 30px;
+      color: #4f4034;
+      font-family: "Cormorant Garamond", Georgia, serif;
+    }
+    #browserRedirect > div {
+      max-width: 320px;
+    }
+    #browserRedirect h2 {
+      color: #697047;
+      margin-bottom: 10px;
+    }
+    #browserRedirect p {
+      margin-bottom: 25px;
+    }
+    #openExternal {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 999px;
+      background: #697047;
+      color: white;
+      text-decoration: none;
+    }
+    
     .scroll-site {
       max-width: 680px;
       margin: 0 auto;
@@ -470,6 +505,20 @@
   </style>
 </head>
 <body>
+
+<!-- ===================================================== -->
+<!-- IN-APP BROWSER REDIRECT OVERLAY (Shown only if needed) -->
+<!-- ===================================================== -->
+<div id="browserRedirect">
+  <div>
+    <h2>Opening your invitation 🤍</h2>
+    <p>This invitation looks best in your browser.</p>
+    <a id="openExternal" href="https://arshik.vercel.app" target="_blank" rel="noopener noreferrer">
+      Open Invitation
+    </a>
+  </div>
+</div>
+
 <div class="opening" id="opening">
   <div class="stage">
     <video id="inviteVideo" playsinline preload="auto" muted>
@@ -575,21 +624,54 @@ if (video.readyState >= 2) {
 }
 
 // ===============================
-// FORCE OPEN IN DEFAULT BROWSER FOR MESSENGER/WHATSAPP
+// DETECT IN-APP BROWSERS & REDIRECT
 // ===============================
 
-(function() {
-  const isMessenger = navigator.userAgent.includes('FBAN') || navigator.userAgent.includes('FBAV');
-  const isWhatsApp = navigator.userAgent.includes('WhatsApp');
-  
-  if (isMessenger || isWhatsApp) {
-    const url = 'https://arshik.vercel.app';
-    window.location.href = url;
-    setTimeout(function() {
-      if (navigator.userAgent.includes('FBAN') || navigator.userAgent.includes('FBAV') || navigator.userAgent.includes('WhatsApp')) {
-        window.location.href = url;
-      }
-    }, 1000);
+(function () {
+  const ua = navigator.userAgent || navigator.vendor || window.opera;
+
+  const isMessenger =
+    ua.includes("FBAN") ||
+    ua.includes("FBAV") ||
+    ua.includes("FB_IAB") ||
+    ua.includes("FB4A") ||
+    ua.includes("Messenger");
+
+  const isInstagram = ua.includes("Instagram");
+  const isTikTok = ua.includes("TikTok");
+  const isLine = ua.includes("Line");
+  const isWeChat = ua.includes("MicroMessenger");
+
+  const isInAppBrowser =
+    isMessenger ||
+    isInstagram ||
+    isTikTok ||
+    isLine ||
+    isWeChat;
+
+  if (!isInAppBrowser) {
+    return;
+  }
+
+  const redirectScreen = document.getElementById("browserRedirect");
+  if (redirectScreen) {
+    redirectScreen.style.display = "grid";
+  }
+
+  const url = "https://arshik.vercel.app";
+
+  // Android: try Chrome intent
+  if (/Android/i.test(ua)) {
+    const intentUrl =
+      "intent://" +
+      url.replace(/^https?:\/\//, "") +
+      "#Intent;scheme=https;package=com.android.chrome;end";
+    window.location.href = intentUrl;
+  } else {
+    // iOS / other: try to open externally, fallback to manual button
+    setTimeout(function () {
+      window.open(url, "_blank");
+    }, 300);
   }
 })();
 
