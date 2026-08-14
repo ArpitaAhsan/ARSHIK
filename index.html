@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#f5efe4">
+  <meta property="og:url" content="https://arshik.vercel.app">
   <title>Fairuz Tarannum & Golam Mohammad Ashiqur Rahman</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -516,7 +517,7 @@
   <section class="page image-page venue-page" id="venue">
     <div class="venue-wrap">
       <img src="assets/venue.png" alt="Phoenix Convention Center wedding venue">
-      <a class="map-button" id="mapLink" href="#" rel="noopener">⌖&nbsp; Get Directions</a>
+      <a class="map-button" href="https://www.google.com/maps/place/Phoenix+Convention+Center/@23.760179,90.3960258,17z/data=!3m1!4b1!4m6!3m5!1s0x3755b9000b385a13:0xca58c9d133771ed6!8m2!3d23.760179!4d90.3960258!16s%2Fg%2F11mdwfjcnn?entry=ttu&g_ep=EgoyMDI2MDgxMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">⌖&nbsp; Get Directions</a>
     </div>
   </section>
   
@@ -550,27 +551,23 @@ let declineHoverCount = 0;
 let isAnimating = false;
 
 // ===============================
-// MAP LINK - CORRECT LOCATION
+// FORCE OPEN IN DEFAULT BROWSER FOR MESSENGER/WHATSAPP
 // ===============================
 
-document.getElementById('mapLink').addEventListener('click', function(e) {
-  e.preventDefault();
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-  const lat = 23.76034593069255;
-  const lng = 90.39604725767101;
-  const place = "Venue Location";
+(function() {
+  const isMessenger = navigator.userAgent.includes('FBAN') || navigator.userAgent.includes('FBAV');
+  const isWhatsApp = navigator.userAgent.includes('WhatsApp');
   
-  if (isIOS) {
-    const googleMapsApp = `comgooglemaps://?q=${lat},${lng}`;
-    const appleMaps = `http://maps.apple.com/?ll=${lat},${lng}&q=${encodeURIComponent(place)}`;
-    window.location.href = googleMapsApp;
-    setTimeout(() => {
-      window.location.href = appleMaps;
-    }, 2000);
-  } else {
-    window.location.href = `https://www.google.com/maps?q=${lat},${lng}`;
+  if (isMessenger || isWhatsApp) {
+    const url = 'https://arshik.vercel.app';
+    window.location.href = url;
+    setTimeout(function() {
+      if (navigator.userAgent.includes('FBAN') || navigator.userAgent.includes('FBAV') || navigator.userAgent.includes('WhatsApp')) {
+        window.location.href = url;
+      }
+    }, 1000);
   }
-});
+})();
 
 // ===============================
 // SMOOTHER VIDEO OPENING - ONE TAP ONLY
