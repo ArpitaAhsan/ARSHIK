@@ -526,7 +526,6 @@
           <button class="decline" id="declineBtn">Regretfully Unable to Attend <small>(Can not press)</small></button>
         </div>
         <div class="rsvp-success" id="rsvpSuccess" hidden>
-          <div class="success-mark">✦</div>
           <h3>We can't wait to celebrate with you</h3>
         </div>
       </div>
@@ -712,13 +711,13 @@ document.addEventListener('mousemove', (event) => {
     declineBtn.classList.add('attracted');
     declineBtn.classList.remove('idle');
     if (distance < 100 && declineHoverCount < 3) {
-      teaseEl.textContent = '😊 Trying to click me?';
+      teaseEl.textContent = ' Trying to click me?';
       teaseEl.style.opacity = '0.8';
     } else if (distance < 100 && declineHoverCount < 6) {
-      teaseEl.textContent = '😄 Nope! Say YES instead!';
+      teaseEl.textContent = ' Nope! Say YES instead!';
       teaseEl.style.opacity = '0.8';
     } else if (distance < 100 && declineHoverCount < 10) {
-      teaseEl.textContent = '😂 You\'re persistent!';
+      teaseEl.textContent = ' You\'re persistent!';
       teaseEl.style.opacity = '0.8';
     }
   } else {
@@ -743,14 +742,14 @@ function gentleDodge() {
   declineBtn.style.transition = 'transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
   const smallText = declineBtn.querySelector('small');
   const messages = [
-    '🤭 You can\'t catch me!',
-    '😄 Nope! Not today!',
-    '😂 Keep trying!',
-    '✨ Almost there... not!',
-    '🤭 You\'re so persistent!',
-    '💖 Just say YES already!',
-    '😘 I\'m too fast for you!',
-    '🎊 Give up and click ACCEPT!'
+    ' You can\'t catch me!',
+    ' Nope! Not today!',
+    ' Keep trying!',
+    ' Almost there... not!',
+    ' You\'re so persistent!',
+    ' Just say YES already!',
+    ' I\'m too fast for you!',
+    ' Give up and click ACCEPT!'
   ];
   const msgIndex = Math.min(declineHoverCount - 1, messages.length - 1);
   const currentMsg = messages[msgIndex] || messages[messages.length - 1];
