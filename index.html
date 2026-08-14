@@ -194,12 +194,13 @@
       color: #fffaf1;
       border: 1px solid rgba(255, 255, 255, .55);
       border-radius: 999px;
-      padding: 1rem 2rem;
+      padding: 0.8rem 1.5rem;
       box-shadow: 0 8px 25px rgba(70, 60, 40, .22);
-      font-size: 1.1rem;
+      font-size: clamp(0.8rem, 2.5vw, 1.1rem);
       letter-spacing: .03em;
       transition: transform .2s ease, background .2s ease;
       z-index: 5;
+      white-space: nowrap;
     }
     .map-button:active {
       transform: translateX(-50%) scale(.97);
@@ -523,9 +524,6 @@
   <section class="page image-page final-page" id="final">
     <div class="final-wrap">
       <img src="assets/final.png" alt="Final wedding dua and blessing">
-      <div class="photo-overlay" aria-hidden="true">
-        <img src="assets/couple-hands.png" alt="">
-      </div>
     </div>
   </section>
   

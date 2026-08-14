@@ -146,8 +146,6 @@ button {
   margin-top: 0.02rem;
 }
 
-/* REMOVED ALL MEDIA QUERIES - SAME STYLES EVERYWHERE */
-
 .map-button {
   position: absolute;
   left: 50%;
@@ -158,12 +156,13 @@ button {
   color: #fffaf1;
   border: 1px solid rgba(255, 255, 255, .55);
   border-radius: 999px;
-  padding: 1rem 2rem;
+  padding: 0.8rem 1.5rem;
   box-shadow: 0 8px 25px rgba(70, 60, 40, .22);
-  font-size: 1.1rem;
+  font-size: clamp(0.8rem, 2.5vw, 1.1rem);
   letter-spacing: .03em;
   transition: transform .2s ease, background .2s ease;
   z-index: 5;
+  white-space: nowrap;
 }
 
 .map-button:active {
