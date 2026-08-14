@@ -513,40 +513,49 @@
       <img src="assets/nikah.png" alt="Nikkah introduction">
     </div>
     <div class="scroll-down">
-  <button onclick="scrollToNextPage(this)">↓ Scroll Down</button>
-</div>
+      <button onclick="scrollToNextPage(this)">↓ Scroll Down</button>
+    </div>
   </section>
   
   <section class="page image-page family-page" id="family">
     <img src="assets/family.png" alt="Family invitation with the couple's names and sketch">
+    <div class="scroll-down">
+      <button onclick="scrollToNextPage(this)">↓ Scroll Down</button>
+    </div>
   </section>
   
-<section class="page image-page save-page" id="saveDate">
-  <div class="save-wrap">
-    <img src="assets/save-date.jpeg" alt="Save the Date — January 9, 2027">
-    <div class="date-heart" aria-hidden="true">♡</div>
-    
-    <!-- RSVP OVERLAY ON TOP OF IMAGE -->
-    <div class="rsvp-overlay">
-      <div class="small-arabic">بِسْمِ اللَّهِ</div>
-      <p class="eyebrow">Your presence would make our day even more special</p>
-      <h2>Will you join us?</h2>
-      <div class="rsvp-buttons" id="rsvpButtons">
-        <button class="accept" id="acceptBtn">Delighted to Accept <span>🤍</span></button>
-        <button class="decline" id="declineBtn">Regretfully Unable to Attend <small>(Can not press)</small></button>
-      </div>
-      <div class="rsvp-success" id="rsvpSuccess" hidden>
-        <div class="success-mark">✦</div>
-        <h3>We can't wait to celebrate with you</h3>
+  <section class="page image-page save-page" id="saveDate">
+    <div class="save-wrap">
+      <img src="assets/save-date.jpeg" alt="Save the Date — January 9, 2027">
+      <div class="date-heart" aria-hidden="true">♡</div>
+      
+      <!-- RSVP OVERLAY ON TOP OF IMAGE -->
+      <div class="rsvp-overlay">
+        <div class="small-arabic">بِسْمِ اللَّهِ</div>
+        <p class="eyebrow">Your presence would make our day even more special</p>
+        <h2>Will you join us?</h2>
+        <div class="rsvp-buttons" id="rsvpButtons">
+          <button class="accept" id="acceptBtn">Delighted to Accept <span>🤍</span></button>
+          <button class="decline" id="declineBtn">Regretfully Unable to Attend <small>(Can not press)</small></button>
+        </div>
+        <div class="rsvp-success" id="rsvpSuccess" hidden>
+          <div class="success-mark">✦</div>
+          <h3>We can't wait to celebrate with you</h3>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+    <div class="scroll-down">
+      <button onclick="scrollToNextPage(this)">↓ Scroll Down</button>
+    </div>
+  </section>
 
   <section class="page image-page venue-page" id="venue">
     <div class="venue-wrap">
       <img src="assets/venue.png" alt="Phoenix Convention Center wedding venue">
       <a class="map-button" href="https://maps.app.goo.gl/mocdovi1Q9xpoS1v6" rel="noopener">⌖&nbsp; Get Directions</a>
+    </div>
+    <div class="scroll-down">
+      <button onclick="scrollToNextPage(this)">↓ Scroll Down</button>
     </div>
   </section>
   
@@ -564,7 +573,8 @@
   <span id="musicIcon">♪</span>
 </button>
 <audio id="audio" preload="auto" loop src="assets/music.mp3"></audio>
-<script>const opening = document.getElementById('opening');
+<script>
+const opening = document.getElementById('opening');
 const video = document.getElementById('inviteVideo');
 const seal = document.getElementById('sealButton');
 const hint = document.getElementById('hint');
@@ -590,9 +600,13 @@ seal.addEventListener('click', async () => {
   started = true;
   hint.classList.add('hidden');
   seal.style.pointerEvents = 'none';
+  
   try {
     await video.play();
-  } catch (e) {}
+  } catch (e) {
+    // Video play failed
+  }
+  
   if (!musicStarted) {
     musicStarted = true;
     audio.volume = 0;
@@ -605,7 +619,9 @@ seal.addEventListener('click', async () => {
         audio.volume = Math.min(volume, 0.48);
         if (volume >= 0.48) clearInterval(fade);
       }, 70);
-    } catch (e) {}
+    } catch (e) {
+      // Audio play failed
+    }
   }
 });
 
@@ -731,23 +747,12 @@ acceptBtn.addEventListener('click', () => {
   clearInterval(idleInterval);
 });
 
-// ===============================
-// SCROLL TO NEXT PAGE
-// ===============================
-
 function scrollToNextPage(button) {
-  // Find the parent .page section
   const currentPage = button.closest('.page');
-  
-  // Find the next .page element after the current one
   let nextPage = currentPage.nextElementSibling;
-  
-  // Skip any non-page elements (text nodes, comments, etc.)
   while (nextPage && !nextPage.classList.contains('page')) {
     nextPage = nextPage.nextElementSibling;
   }
-  
-  // If there's a next page, scroll to it
   if (nextPage) {
     nextPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
