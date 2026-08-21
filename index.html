@@ -58,8 +58,9 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: fill;
+      object-fit: contain; /* Changed from fill */
       display: block;
+      background: #f6efe7;
     }
     #sealButton {
       position: absolute;
@@ -117,12 +118,15 @@
       position: relative;
       overflow: hidden;
       width: 100%;
+      background: var(--ivory);
     }
     .image-page {
       display: grid;
       place-items: center;
       background: var(--ivory);
     }
+    
+    /* FIX: Changed all object-fit from cover to contain */
     .image-page > img,
     .image-wrap > img,
     .save-wrap > img,
@@ -130,21 +134,24 @@
     .final-wrap > img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain; /* Was: cover */
       display: block;
+      background: var(--ivory);
     }
     .image-wrap {
       position: relative;
       width: 100%;
       height: 100%;
       overflow: hidden;
+      background: var(--ivory);
     }
     .image-wrap > img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain; /* Was: cover */
       object-position: center;
       display: block;
+      background: var(--ivory);
     }
     .nikah-name-cover {
       position: absolute;
@@ -185,12 +192,14 @@
       position: relative;
       width: 100%;
       height: 100%;
+      background: var(--ivory);
     }
     .venue-wrap > img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain; /* Was: cover */
       display: block;
+      background: var(--ivory);
     }
     .map-button {
       position: absolute;
@@ -364,29 +373,6 @@
       opacity: 1;
       transform: translateY(-50%) scale(1.2) rotate(-20deg);
     }
-    .decline-tease {
-      position: absolute;
-      top: -38px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.7rem;
-      color: #a88b58;
-      opacity: 0;
-      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-      white-space: nowrap;
-      font-style: italic;
-      pointer-events: none;
-      background: rgba(255, 250, 245, 0.9);
-      padding: 4px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(168, 139, 88, 0.2);
-      backdrop-filter: blur(4px);
-    }
-    .decline:hover + .decline-tease,
-    .decline:focus + .decline-tease {
-      opacity: 0.9;
-      transform: translateX(-50%) translateY(-4px);
-    }
     .rsvp-success {
       animation: rise .7s ease both;
     }
@@ -422,8 +408,9 @@
     .final-wrap > img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain; /* Was: cover */
       display: block;
+      background: var(--ivory);
     }
     .photo-overlay {
       position: absolute;
@@ -469,10 +456,7 @@
       transform: scale(.94);
     }
 
-    /* ===============================
-       RSVP OVERLAY - CURSIVE TEXT
-       =============================== */
-
+    /* RSVP OVERLAY - CURSIVE TEXT */
     .rsvp-overlay .eyebrow,
     .rsvp-overlay h2,
     .rsvp-overlay .accept,
@@ -481,6 +465,32 @@
     .rsvp-overlay h3,
     .rsvp-overlay .success-mark {
       font-family: "Great Vibes", "Brush Script MT", cursive;
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 6%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+    .scroll-down button {
+      background: rgba(255, 250, 244, 0.85);
+      border: 1px solid rgba(80, 70, 50, 0.2);
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1rem;
+      color: #4f4034;
+      backdrop-filter: blur(4px);
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      letter-spacing: 0.04em;
+    }
+    .scroll-down button:active {
+      transform: scale(0.94);
+      background: rgba(255, 250, 244, 0.95);
     }
   </style>
 </head>
@@ -496,7 +506,7 @@
 </div>
 <div class="scroll-site" id="scrollSite">
   
-  <!-- NIKKAH PAGE - SCROLL DOWN BUTTON ONLY HERE -->
+  <!-- NIKKAH PAGE -->
   <section class="page image-page nikah-page" id="nikah">
     <div class="image-wrap">
       <img src="assets/nikah.png" alt="Nikkah introduction">
@@ -506,17 +516,16 @@
     </div>
   </section>
   
-  <!-- FAMILY PAGE - NO SCROLL DOWN -->
+  <!-- FAMILY PAGE -->
   <section class="page image-page family-page" id="family">
     <img src="assets/family.png" alt="Family invitation with the couple's names and sketch">
   </section>
   
-  <!-- SAVE DATE PAGE - NO SCROLL DOWN -->
+  <!-- SAVE DATE PAGE -->
   <section class="page image-page save-page" id="saveDate">
     <div class="save-wrap">
       <img src="assets/save-date.jpeg" alt="Save the Date — January 9, 2027">
 
-      
       <!-- RSVP OVERLAY ON TOP OF IMAGE -->
       <div class="rsvp-overlay">
         <p class="eyebrow">Your presence would make our day even more special</p>
@@ -532,7 +541,7 @@
     </div>
   </section>
 
-  <!-- VENUE PAGE - NO SCROLL DOWN -->
+  <!-- VENUE PAGE -->
   <section class="page image-page venue-page" id="venue">
     <div class="venue-wrap">
       <img src="assets/venue.png" alt="Phoenix Convention Center wedding venue">
@@ -540,7 +549,7 @@
     </div>
   </section>
   
-  <!-- FINAL PAGE - NO SCROLL DOWN -->
+  <!-- FINAL PAGE -->
   <section class="page image-page final-page" id="final">
     <div class="final-wrap">
       <img src="assets/final.png" alt="Final wedding dua and blessing">
@@ -589,8 +598,6 @@ if (video.readyState >= 2) {
 
 // ===============================
 // MERGED MESSENGER BEHAVIOR
-// iOS: Let it work in-app
-// Android: Redirect to Chrome
 // ===============================
 
 (function () {
@@ -599,13 +606,11 @@ if (video.readyState >= 2) {
   const isAndroid = /Android/i.test(ua);
   const isMessenger = /FBAN|FBAV|FBIOS|Messenger/i.test(ua);
 
-  // iOS Messenger: Let it work inside the app
   if (isIOS && isMessenger) {
     console.log('iOS Messenger detected - invitation will work in-app');
     return;
   }
 
-  // Android Messenger: Redirect to Chrome browser
   if (isAndroid && isMessenger) {
     const url = "https://arshik.vercel.app";
     const intentUrl =
@@ -618,10 +623,9 @@ if (video.readyState >= 2) {
 })();
 
 // ===============================
-// SMOOTHER VIDEO OPENING - ONE TAP ONLY
+// SMOOTHER VIDEO OPENING
 // ===============================
 
-// Prevent multiple taps
 let isOpening = false;
 
 function openInvitation() {
@@ -632,10 +636,8 @@ function openInvitation() {
   hint.classList.add('hidden');
   seal.style.pointerEvents = 'none';
   
-  // Start video
   video.play().catch(() => {});
   
-  // Start music with fade
   if (!musicStarted) {
     musicStarted = true;
     audio.volume = 0;
@@ -651,14 +653,12 @@ function openInvitation() {
   }
 }
 
-// Click handler with passive: true for better touch performance
 seal.addEventListener('click', openInvitation);
 seal.addEventListener('touchstart', (e) => {
   e.preventDefault();
   openInvitation();
 }, { passive: false });
 
-// Also allow clicking on the stage background
 document.querySelector('.stage').addEventListener('click', (e) => {
   if (e.target === document.querySelector('.stage') || e.target === video) {
     openInvitation();
@@ -687,11 +687,6 @@ musicControl.addEventListener('click', () => {
 // RSVP BUTTON DODGE
 // ===============================
 
-const teaseEl = document.createElement('div');
-teaseEl.className = 'decline-tease';
-teaseEl.textContent = '💕 Come on! Say YES!';
-declineBtn.parentNode.insertBefore(teaseEl, declineBtn.nextSibling);
-
 document.addEventListener('mousemove', (event) => {
   if (rsvpButtons.hidden) return;
   const rect = declineBtn.getBoundingClientRect();
@@ -710,21 +705,10 @@ document.addEventListener('mousemove', (event) => {
     declineBtn.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
     declineBtn.classList.add('attracted');
     declineBtn.classList.remove('idle');
-    if (distance < 100 && declineHoverCount < 3) {
-      teaseEl.textContent = ' Trying to click me?';
-      teaseEl.style.opacity = '0.8';
-    } else if (distance < 100 && declineHoverCount < 6) {
-      teaseEl.textContent = ' Nope! Say YES instead!';
-      teaseEl.style.opacity = '0.8';
-    } else if (distance < 100 && declineHoverCount < 10) {
-      teaseEl.textContent = ' You\'re persistent!';
-      teaseEl.style.opacity = '0.8';
-    }
   } else {
     declineBtn.style.transform = 'translate(0px, 0px) rotate(0deg)';
     declineBtn.classList.remove('attracted');
     declineBtn.classList.add('idle');
-    teaseEl.style.opacity = '0';
   }
 });
 
@@ -740,16 +724,17 @@ function gentleDodge() {
   declineBtn.classList.add('dodging');
   declineBtn.style.transform = `translate(${dodgeX}px, ${dodgeY}px) rotate(${dodgeX * 0.08}deg)`;
   declineBtn.style.transition = 'transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
+  
   const smallText = declineBtn.querySelector('small');
   const messages = [
-    ' You can\'t catch me!',
-    ' Nope! Not today!',
-    ' Keep trying!',
-    ' Almost there... not!',
-    ' You\'re so persistent!',
-    ' Just say YES already!',
-    ' I\'m too fast for you!',
-    ' Give up and click ACCEPT!'
+    '🎯 You can\'t catch me!',
+    '😄 Nope! Not today!',
+    '😂 Keep trying!',
+    '✨ Almost there... not!',
+    '🤭 You\'re so persistent!',
+    '💖 Just say YES already!',
+    '😘 I\'m too fast for you!',
+    '🎊 Give up and click ACCEPT!'
   ];
   const msgIndex = Math.min(declineHoverCount - 1, messages.length - 1);
   const currentMsg = messages[msgIndex] || messages[messages.length - 1];
@@ -760,8 +745,7 @@ function gentleDodge() {
     smallText.style.fontSize = '0.7rem';
     smallText.style.transition = 'all 0.6s ease';
   }
-  teaseEl.textContent = currentMsg;
-  teaseEl.style.opacity = '0.9';
+  
   setTimeout(() => {
     isAnimating = false;
     setTimeout(() => {
@@ -769,7 +753,6 @@ function gentleDodge() {
         declineBtn.style.transform = 'translate(0px, 0px) rotate(0deg)';
         declineBtn.classList.remove('dodging');
         declineBtn.classList.add('idle');
-        teaseEl.style.opacity = '0';
       }
     }, 1500);
   }, 800);
